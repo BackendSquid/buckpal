@@ -21,7 +21,7 @@ class Account(
             sourceAccountId = this.id,
             targetAccountId = targetAccountId,
             timestamp = LocalDateTime.now(),
-            money = money
+            money = money,
         )
 
         this.activityWindow.addActivity(withdrawal)
@@ -33,6 +33,18 @@ class Account(
             this.calculateBalance(),
             -money,
         ).isPositiveOrZero()
+
+    fun deposit(money: Money, sourceAccountId: AccountId): Boolean {
+        val deposit = Activity(
+            ownerAccountId = this.id,
+            sourceAccountId = sourceAccountId,
+            targetAccountId = this.id,
+            timestamp = LocalDateTime.now(),
+            money = money,
+        )
+        this.activityWindow.addActivity(activity = deposit)
+        return true
+    }
 
     data class AccountId(
         private val value: Long,
