@@ -3,19 +3,16 @@ package backendsquid.buckpal.account.domain
 import java.time.LocalDateTime
 
 class Account(
-    val id: AccountId? = null,
+    val id: AccountId,
     val baselineBalance: Money,
     val activityWindow: ActivityWindow,
 ) {
 
-    fun calculateBalance(): Money = if (id == null) {
-        this.baselineBalance
-    } else {
+    fun calculateBalance(): Money =
         this.baselineBalance + activityWindow.calculateBalance(id)
-    }
 
     fun withdraw(money: Money, targetAccountId: AccountId): Boolean {
-        if (this.id == null || !mayWithdraw(money)) {
+        if (!mayWithdraw(money)) {
             return false
         }
 
