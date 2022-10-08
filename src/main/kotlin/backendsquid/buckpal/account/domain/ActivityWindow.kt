@@ -13,8 +13,15 @@ class ActivityWindow(
         get() = activities.maxOfOrNull { it.timestamp } ?: throw IllegalStateException()
 
     fun calculateBalance(accountId: Account.AccountId): Money {
-        val depositBalance = activities.filter { it.targetAccountId == accountId }.map { it.money }.reduce(Money::plus)
-        val withdrawalBalance = activities.filter { it.sourceAccountId == accountId }.map { it.money }.reduce(Money::plus)
+        val depositBalance = activities
+            .filter { it.targetAccountId == accountId }
+            .map { it.money }
+            .reduce(Money::plus)
+
+        val withdrawalBalance = activities
+            .filter { it.sourceAccountId == accountId }
+            .map { it.money }
+            .reduce(Money::plus)
 
         return depositBalance - withdrawalBalance
     }
