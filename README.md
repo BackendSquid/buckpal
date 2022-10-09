@@ -6,8 +6,6 @@
 ## 참고 링크
 https://github.com/thombergs/buckpal
 
-
-
 ## 스터디 진행방식 
 > 스터디 방식은 한 사람이 주도적으로 발표하는 형식 X
 
