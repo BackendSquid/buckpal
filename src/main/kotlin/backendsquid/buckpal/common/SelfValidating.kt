@@ -5,9 +5,8 @@ import javax.validation.Validation
 import javax.validation.Validator
 
 abstract class SelfValidating<T>(
-    private val validator: Validator,
+    private val validator: Validator = Validation.buildDefaultValidatorFactory().validator,
 ) {
-    constructor() : this(validator = Validation.buildDefaultValidatorFactory().validator)
 
     protected fun validateSelf() {
         val violations = validator.validate(this)
