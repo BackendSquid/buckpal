@@ -4,8 +4,12 @@ import backendsquid.buckpal.account.application.port.`in`.GetAccountBalanceQuery
 import backendsquid.buckpal.account.application.port.out.LoadAccountPort
 import backendsquid.buckpal.account.domain.Account
 import backendsquid.buckpal.account.domain.Money
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
+@Service
+@Transactional(readOnly = true)
 class GetAccountBalanceService(
     private val loadAccountPort: LoadAccountPort,
 ) : GetAccountBalanceQuery {
