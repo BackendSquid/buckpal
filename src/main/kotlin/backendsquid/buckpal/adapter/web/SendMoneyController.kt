@@ -27,7 +27,7 @@ class SendMoneyController(
         val command = SendMoneyCommand(
             sourceAccountId = Account.AccountId(sourceAccountId),
             targetAccountId = Account.AccountId(targetAccountId),
-            Money.of(amount)
+            money = Money.of(amount)
         )
 
         sendMoneyUseCase.sendMoney(command)
