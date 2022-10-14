@@ -1,7 +1,7 @@
 package backendsquid.buckpal.account.application.port.`in`
 
 import backendsquid.buckpal.account.domain.Account
-import backendsquid.buckpal.account.domain.Money
+import backendsquid.buckpal.common.Money
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 

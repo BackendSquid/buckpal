@@ -1,6 +1,7 @@
 package backendsquid.buckpal.account.domain
 
-import backendsquid.buckpal.account.domain.Account.*
+import backendsquid.buckpal.common.AccountId
+import backendsquid.buckpal.common.Money
 import java.time.LocalDateTime
 
 data class Activity(

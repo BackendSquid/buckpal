@@ -1,8 +1,8 @@
 package backendsquid.buckpal.account.application.port.out
 
-import backendsquid.buckpal.account.domain.Account
+import backendsquid.buckpal.common.AccountId
 
 interface AccountLock {
-    fun lockAccount(accountId: Account.AccountId)
-    fun releaseAccount(accountId: Account.AccountId)
+    fun lockAccount(accountId: AccountId)
+    fun releaseAccount(accountId: AccountId)
 }

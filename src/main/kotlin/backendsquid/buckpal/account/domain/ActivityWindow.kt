@@ -1,5 +1,7 @@
 package backendsquid.buckpal.account.domain
 
+import backendsquid.buckpal.common.AccountId
+import backendsquid.buckpal.common.Money
 import java.time.LocalDateTime
 import java.util.*
 
@@ -12,7 +14,7 @@ class ActivityWindow(
     val endTimeStamp: LocalDateTime
         get() = activities.maxOfOrNull { it.timestamp } ?: throw IllegalStateException()
 
-    fun calculateBalance(accountId: Account.AccountId): Money {
+    fun calculateBalance(accountId: AccountId): Money {
         val depositBalance = activities
             .filter { it.targetAccountId == accountId }
             .map { it.money }

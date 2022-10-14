@@ -1,15 +1,12 @@
 package backendsquid.buckpal.account.application.port.`in`
 
-import backendsquid.buckpal.account.domain.Account
-import backendsquid.buckpal.account.domain.Money
+import backendsquid.buckpal.common.AccountId
+import backendsquid.buckpal.common.Money
 import backendsquid.buckpal.common.SelfValidating
-import org.hibernate.validator.internal.engine.ConstraintViolationImpl
-import javax.validation.ConstraintViolation
-import javax.validation.ConstraintViolationException
 
 data class SendMoneyCommand(
-    val sourceAccountId: Account.AccountId,
-    val targetAccountId: Account.AccountId,
+    val sourceAccountId: AccountId,
+    val targetAccountId: AccountId,
     val money: Money,
 ): SelfValidating<SendMoneyCommand>() {
 

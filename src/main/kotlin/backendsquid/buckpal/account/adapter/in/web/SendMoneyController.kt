@@ -2,8 +2,8 @@ package backendsquid.buckpal.account.adapter.`in`.web
 
 import backendsquid.buckpal.account.application.port.`in`.SendMoneyCommand
 import backendsquid.buckpal.account.application.port.`in`.SendMoneyUseCase
-import backendsquid.buckpal.account.domain.Account
-import backendsquid.buckpal.account.domain.Money
+import backendsquid.buckpal.common.AccountId
+import backendsquid.buckpal.common.Money
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
@@ -19,8 +19,8 @@ class SendMoneyController(
         @PathVariable("amount") amount: Long
     ) : Boolean {
         val command = SendMoneyCommand(
-            sourceAccountId = Account.AccountId(sourceAccountId),
-            targetAccountId = Account.AccountId(targetAccountId),
+            sourceAccountId = AccountId(sourceAccountId),
+            targetAccountId = AccountId(targetAccountId),
             money = Money.of(amount),
         )
         return sendMoneyUseCase.sendMoney(command)

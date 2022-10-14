@@ -1,8 +1,8 @@
 package backendsquid.buckpal.account.application.port.`in`
 
-import backendsquid.buckpal.account.domain.Account
-import backendsquid.buckpal.account.domain.Money
+import backendsquid.buckpal.common.AccountId
+import backendsquid.buckpal.common.Money
 
 interface GetAccountBalanceQuery {
-    fun getAccountBalance(accountId: Account.AccountId): Money
+    fun getAccountBalance(accountId: AccountId): Money
 }

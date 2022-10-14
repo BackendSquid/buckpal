@@ -1,5 +1,7 @@
 package backendsquid.buckpal.account.domain
 
+import backendsquid.buckpal.common.AccountId
+import backendsquid.buckpal.common.Money
 import java.time.LocalDateTime
 
 class Account(
@@ -45,8 +47,4 @@ class Account(
         this.activityWindow.addActivity(activity = deposit)
         return true
     }
-
-    data class AccountId(
-        private val value: Long,
-    )
 }
