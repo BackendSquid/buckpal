@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 import javax.transaction.Transactional
 
 @Transactional
-class SendMoneyService(
+open class SendMoneyService(
     private val loadAccountPort: LoadAccountPort,
     private val accountLock: AccountLock,
     private val updateAccountStatePort: UpdateAccountStatePort,
