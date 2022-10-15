@@ -12,6 +12,7 @@ data class SendMoneyCommand(
     val targetAccountId: Account.AccountId,
     val money: Money,
 ): SelfValidating<SendMoneyCommand>() {
+    constructor(sourceAccountId: Long, targetAccountId: Long, money: Long) : this(Account.AccountId(sourceAccountId), Account.AccountId(targetAccountId), Money.of(money))
 
     init {
         if (!money.isPositive()) {
