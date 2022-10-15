@@ -6,7 +6,5 @@ import org.springframework.stereotype.Service
 
 @Service
 class DoNothingSendMoneyUseCase: SendMoneyUseCase {
-    override fun sendMoney(command: SendMoneyCommand): Boolean {
-        return true
-    }
+    override fun sendMoney(command: SendMoneyCommand): Boolean = true
 }
