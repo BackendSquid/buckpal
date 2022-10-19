@@ -1,4 +1,4 @@
-package backendsquid.buckpal.account.adapter.web
+package backendsquid.buckpal.account.adapter.`in`.web
 
 import backendsquid.buckpal.account.application.port.`in`.SendMoneyCommand
 import backendsquid.buckpal.account.application.port.`in`.SendMoneyUseCase
