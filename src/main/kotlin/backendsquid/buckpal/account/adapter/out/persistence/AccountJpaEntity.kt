@@ -1,15 +1,12 @@
 package backendsquid.buckpal.account.adapter.out.persistence
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "account")
 class AccountJpaEntity(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long?,
 ) {
 
