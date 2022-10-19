@@ -28,8 +28,7 @@ class AccountPersistenceAdapter(
             .getDepositBalanceUtil(accountId = accountId.value, until = baseLineDate)
             ?: 0L
 
-        return accountMapper.mapToDomainEntity(
-            account = account,
+        return account.mapToDomainEntity(
             activities = activities,
             withdrawalBalance = withdrawalBalance,
             depositBalance = depositBalance,
@@ -40,7 +39,7 @@ class AccountPersistenceAdapter(
         .activityWindow
         .getActivities()
         .filter { it.id == null }
-        .map { accountMapper.mapToJpaEntity(it) }
+        .map { it.mapToJpaEntity() }
         .let {
             activityRepository.saveAll(it)
             Unit
