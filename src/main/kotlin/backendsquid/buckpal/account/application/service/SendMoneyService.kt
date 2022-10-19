@@ -5,10 +5,12 @@ import backendsquid.buckpal.account.application.port.`in`.SendMoneyUseCase
 import backendsquid.buckpal.account.application.port.out.AccountLock
 import backendsquid.buckpal.account.application.port.out.LoadAccountPort
 import backendsquid.buckpal.account.application.port.out.UpdateAccountStatePort
+import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
-import javax.transaction.Transactional
 
 @Transactional
+@Component
 class SendMoneyService(
     private val loadAccountPort: LoadAccountPort,
     private val accountLock: AccountLock,
