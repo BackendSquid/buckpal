@@ -19,9 +19,9 @@ class AccountMapper {
             Money.of(withdrawalBalance)
         )
         return Account.withId(
-            Account.AccountId(account.id!!),
-            baselineBalance,
-            mapToActivityWindow(activities)
+            accountId = Account.AccountId(account.id!!),
+            baselineBalance = baselineBalance,
+            activityWindow = mapToActivityWindow(activities)
         )
     }
 
@@ -30,26 +30,26 @@ class AccountMapper {
         for (activity in activities) {
             mappedActivities.add(
                 Activity(
-                    Activity.ActivityId(activity.id!!),
-                    Account.AccountId(activity.ownerAccountId),
-                    Account.AccountId(activity.sourceAccountId),
-                    Account.AccountId(activity.targetAccountId),
-                    activity.timestamp,
-                    Money.of(activity.amount)
+                    id = Activity.ActivityId(activity.id!!),
+                    ownerAccountId = Account.AccountId(activity.ownerAccountId),
+                    sourceAccountId = Account.AccountId(activity.sourceAccountId),
+                    targetAccountId = Account.AccountId(activity.targetAccountId),
+                    timestamp = activity.timestamp,
+                    money = Money.of(activity.amount)
                 )
             )
         }
         return ActivityWindow(mappedActivities)
     }
 
-    fun mapToJpaEntity(activity: Activity): ActivityJpaEntity {
-        return ActivityJpaEntity(
-            activity.id?.value,
-            activity.timestamp,
-            activity.ownerAccountId.value,
-            activity.sourceAccountId.value,
-            activity.targetAccountId.value,
-            activity.money.amount.longValueExact()
+    fun mapToJpaEntity(activity: Activity): ActivityJpaEntity =
+        ActivityJpaEntity(
+            id = activity.id?.value,
+            timestamp = activity.timestamp,
+            ownerAccountId = activity.ownerAccountId.value,
+            sourceAccountId = activity.sourceAccountId.value,
+            targetAccountId = activity.targetAccountId.value,
+            amount = activity.money.amount.longValueExact()
         )
-    }
+
 }

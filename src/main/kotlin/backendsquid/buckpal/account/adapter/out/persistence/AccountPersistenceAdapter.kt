@@ -43,10 +43,10 @@ class AccountPersistenceAdapter(
         )
 
         return accountMapper.mapToDomainEntity(
-            account,
-            activities,
-            withdrawalBalance,
-            depositBalance
+            account = account,
+            activities = activities,
+            withdrawalBalance = withdrawalBalance,
+            depositBalance = depositBalance
         )!!
 
     }

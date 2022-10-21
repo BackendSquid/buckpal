@@ -29,7 +29,7 @@ interface ActivityRepository : JpaRepository<ActivityJpaEntity, Long> {
     fun getDepositBalanceUntil(
         @Param("accountId") accountId: Long,
         @Param("until") until: LocalDateTime
-    ): Long
+    ): Long?
 
     @Query(
         """
@@ -42,6 +42,6 @@ interface ActivityRepository : JpaRepository<ActivityJpaEntity, Long> {
     fun getWithdrawalBalanceUntil(
         @Param("accountId") accountId: Long,
         @Param("until") until: LocalDateTime
-    ): Long
+    ): Long?
 
 }
