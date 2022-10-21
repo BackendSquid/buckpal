@@ -47,6 +47,15 @@ class Account(
     }
 
     data class AccountId(
-        private val value: Long,
+        val value: Long,
     )
+
+    companion object {
+        fun withId(accountId: AccountId, baselineBalance: Money, activityWindow: ActivityWindow): Account? =
+            Account(
+                id = accountId,
+                baselineBalance = baselineBalance,
+                activityWindow = activityWindow
+            )
+    }
 }
