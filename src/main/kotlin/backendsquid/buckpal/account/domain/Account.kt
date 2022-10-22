@@ -47,6 +47,6 @@ class Account(
     }
 
     data class AccountId(
-        private val value: Long,
+        val value: Long,
     )
 }

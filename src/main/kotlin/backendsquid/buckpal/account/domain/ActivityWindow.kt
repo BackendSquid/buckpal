@@ -16,12 +16,12 @@ class ActivityWindow(
         val depositBalance = activities
             .filter { it.targetAccountId == accountId }
             .map { it.money }
-            .reduce(Money::plus)
+            .reduceOrNull(Money::plus) ?: Money.ZERO
 
         val withdrawalBalance = activities
             .filter { it.sourceAccountId == accountId }
             .map { it.money }
-            .reduce(Money::plus)
+            .reduceOrNull(Money::plus) ?: Money.ZERO
 
         return depositBalance - withdrawalBalance
     }

@@ -3,7 +3,7 @@ package backendsquid.buckpal.account.domain
 import java.math.BigInteger
 
 data class Money(
-    private val amount: BigInteger
+    val amount: BigInteger,
 ): Comparable<Money> {
     companion object {
         val ZERO: Money = Money.of(value = 0)
