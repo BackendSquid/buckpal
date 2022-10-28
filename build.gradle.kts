@@ -1,7 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val kotestVersion by extra("5.5.1")
+val kotestSpringVersion by extra("1.1.2")
 val mockkVersion by extra("1.13.2")
+val springMockkVersion by extra("3.1.1")
 
 plugins {
 	id("org.springframework.boot") version "2.7.3"
@@ -33,7 +35,9 @@ dependencies {
 	testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
 	testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
 	testImplementation("io.kotest:kotest-property:$kotestVersion")
-	testImplementation("io.mockk:mockk:${mockkVersion}")
+	testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestSpringVersion")
+	testImplementation("io.mockk:mockk:$mockkVersion")
+	testImplementation("com.ninja-squad:springmockk:$springMockkVersion")
 }
 
 tasks.withType<KotlinCompile> {
