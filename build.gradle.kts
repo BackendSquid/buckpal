@@ -27,6 +27,15 @@ dependencies {
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("com.tngtech.archunit:archunit:1.0.0-rc1")
+
+    // Test
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.mockito", module = "mockito-core")
+    }
+    testImplementation("io.kotest:kotest-runner-junit5:5.5.2")
+    testImplementation("io.kotest:kotest-assertions-core:5.5.2")
+    testImplementation("io.mockk:mockk:1.13.2")
+
 }
 
 tasks.withType<KotlinCompile> {
