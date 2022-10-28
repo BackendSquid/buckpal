@@ -15,8 +15,11 @@ class SendMoneyService(
     private val loadAccountPort: LoadAccountPort,
     private val accountLock: AccountLock,
     private val updateAccountStatePort: UpdateAccountStatePort,
-): SendMoneyUseCase {
+    private val moneyTransferProperties: MoneyTransferProperties,
+) : SendMoneyUseCase {
     override fun sendMoney(command: SendMoneyCommand): Boolean {
+        checkThreshold(command)
+
         val baseline = LocalDateTime.now().minusDays(10)
         val sourceAccount = loadAccountPort.loadAccount(
             accountId = command.sourceAccountId,
@@ -46,5 +49,11 @@ class SendMoneyService(
         accountLock.releaseAccount(targetAccount.id)
 
         return true
+    }
+
+    private fun checkThreshold(command: SendMoneyCommand) {
+        if (command.money.isGreaterThan(moneyTransferProperties.maximumTransferThreshold)) {
+            throw ThresholdExceededException(moneyTransferProperties.maximumTransferThreshold, command.money)
+        }
     }
 }
