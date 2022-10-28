@@ -12,7 +12,7 @@ import javax.validation.constraints.Positive
 
 @RestController
 @Validated
-class AccountController(
+class SendMoneyController(
     private val sendMoneyUseCase: SendMoneyUseCase,
 ) {
 
