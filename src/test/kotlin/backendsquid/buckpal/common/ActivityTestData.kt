@@ -8,13 +8,13 @@ import java.time.LocalDateTime
 class ActivityTestData {
     companion object {
         fun defaultActivity(
-            withTargetAccount: Account.AccountId,
+            withTargetAccount: Account.AccountId?,
             withMoney: Money
         ) = Activity(
             ownerAccountId = Account.AccountId(42L),
             sourceAccountId = Account.AccountId(42L),
             timestamp = LocalDateTime.now(),
-            targetAccountId = withTargetAccount,
+            targetAccountId = withTargetAccount ?: Account.AccountId(41L),
             money = withMoney
         )
     }

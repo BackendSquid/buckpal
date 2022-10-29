@@ -7,12 +7,12 @@ import backendsquid.buckpal.account.domain.Money
 class AccountTestData {
     companion object {
         fun defaultAccount(
-            withAccountId: Account.AccountId,
-            withBaselineBalance: Money,
+            withAccountId: Account.AccountId? = null,
+            withBaselineBalance: Money?,
             withActivityWindow: ActivityWindow
         ) = Account(
-            id = withAccountId,
-            baselineBalance = withBaselineBalance,
+            id = withAccountId ?: Account.AccountId(42L),
+            baselineBalance = withBaselineBalance ?: Money.of(999L),
             activityWindow = withActivityWindow
         )
     }
