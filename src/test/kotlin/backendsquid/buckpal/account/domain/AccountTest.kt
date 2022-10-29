@@ -5,13 +5,37 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import java.time.LocalDateTime
+import java.time.ZoneId
 
 class AccountTest: BehaviorSpec({
+    fun defaultActivity(
+        ownerAccountId: AccountId = AccountId(42L),
+        sourceAccountId: AccountId = AccountId(42L),
+        targetAccountId: AccountId = AccountId(41L),
+        money: Long = 999L,
+    ) = Activity(
+        ownerAccountId = ownerAccountId,
+        sourceAccountId = sourceAccountId,
+        targetAccountId = targetAccountId,
+        timestamp = LocalDateTime.now(ZoneId.of("Asia/Seoul")),
+        money = Money.of(money)
+    )
+
+    fun defaultAccount(
+        accountId: AccountId = AccountId(42L),
+        baseLineBalance: Long = 999L,
+        activityWindow: ActivityWindow = ActivityWindow(mutableListOf(defaultActivity(), defaultActivity()))
+    ) = Account(
+        id = accountId,
+        baselineBalance = Money.of(baseLineBalance),
+        activityWindow = activityWindow
+    )
+
     given("계좌 잔고가 555 + 999 + 1일 때") {
         val accountId = AccountId(1L)
-        val account = Account(
-            id = accountId,
-            baselineBalance = Money.of(555L),
+        val account = defaultAccount(
+            accountId = accountId,
+            baseLineBalance = 555L,
             activityWindow = ActivityWindow(
                 Activity(
                     ownerAccountId = accountId,
