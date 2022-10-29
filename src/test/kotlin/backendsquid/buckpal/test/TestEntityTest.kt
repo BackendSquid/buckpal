@@ -37,7 +37,7 @@ class TestEntityTest(
         em.persist(newEntity)
 
         println(newEntity.id)
-        assertThat(newEntity.id).isNotEqualTo(0)
+        assertThat(newEntity.id).isEqualTo(0)
     }
 
     @Test
