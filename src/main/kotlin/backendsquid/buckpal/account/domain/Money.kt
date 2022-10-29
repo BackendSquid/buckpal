@@ -4,7 +4,7 @@ import java.math.BigInteger
 
 data class Money(
     val amount: BigInteger,
-): Comparable<Money> {
+) : Comparable<Money> {
     companion object {
         val ZERO: Money = Money.of(value = 0)
         fun of(value: Long): Money = Money(BigInteger.valueOf(value))
@@ -15,6 +15,10 @@ data class Money(
     fun isPositiveOrZero(): Boolean = this.amount >= BigInteger.ZERO
     fun isNegative(): Boolean = this.amount < BigInteger.ZERO
     fun isPositive(): Boolean = this.amount > BigInteger.ZERO
+
+    fun isGreaterThanOrEqualTo(money: Money): Boolean = this.amount >= money.amount
+
+    fun isGreaterThan(money: Money): Boolean = this.amount.compareTo(money.amount) >= 1
 
     override fun compareTo(other: Money): Int = this.amount.compareTo(other.amount)
     operator fun plus(other: Money): Money = Money(this.amount + other.amount)
