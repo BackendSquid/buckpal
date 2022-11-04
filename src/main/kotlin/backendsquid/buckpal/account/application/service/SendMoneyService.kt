@@ -16,7 +16,7 @@ class SendMoneyService(
     private val accountLock: AccountLock,
     private val updateAccountStatePort: UpdateAccountStatePort,
 ): SendMoneyUseCase {
-    override fun sendMoney(command: SendMoneyCommand): Boolean {
+    override fun sendMoney(command: SendMoneyCommand): SendMoneyResult {
         val baseline = LocalDateTime.now().minusDays(10)
         val sourceAccount = loadAccountPort.loadAccount(
             accountId = command.sourceAccountId,
@@ -30,13 +30,13 @@ class SendMoneyService(
         accountLock.lockAccount(sourceAccount.id)
         if (!sourceAccount.withdraw(money = command.money, targetAccountId = targetAccount.id)) {
             accountLock.releaseAccount(sourceAccount.id)
-            return false
+            return SendMoneyResult(false)
         }
 
         accountLock.lockAccount(targetAccount.id)
         if (!targetAccount.deposit(money = command.money, sourceAccountId = sourceAccount.id)) {
             accountLock.releaseAccount(targetAccount.id)
-            return false
+            return SendMoneyResult(false)
         }
 
         updateAccountStatePort.updateActivities(sourceAccount)
@@ -45,6 +45,6 @@ class SendMoneyService(
         accountLock.releaseAccount(sourceAccount.id)
         accountLock.releaseAccount(targetAccount.id)
 
-        return true
+        return SendMoneyResult(true)
     }
 }
