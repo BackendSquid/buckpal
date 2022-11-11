@@ -4,12 +4,12 @@ import backendsquid.buckpal.account.application.port.out.LoadAccountPort
 import backendsquid.buckpal.account.application.port.out.UpdateAccountStatePort
 import backendsquid.buckpal.account.domain.Account
 import backendsquid.buckpal.account.domain.Account.*
+import backendsquid.buckpal.common.PersistenceAdapter
 import org.springframework.data.repository.findByIdOrNull
-import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 import javax.persistence.EntityNotFoundException
 
-@Component
+@PersistenceAdapter
 class AccountPersistenceAdapter(
     private val accountRepository: AccountRepository,
     private val activityRepository: ActivityRepository,
