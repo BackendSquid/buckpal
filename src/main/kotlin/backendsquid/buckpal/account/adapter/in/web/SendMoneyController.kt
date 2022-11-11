@@ -2,6 +2,7 @@ package backendsquid.buckpal.account.adapter.`in`.web
 
 import backendsquid.buckpal.account.application.port.`in`.SendMoneyCommand
 import backendsquid.buckpal.account.application.port.`in`.SendMoneyUseCase
+import backendsquid.buckpal.common.WebAdapter
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 import javax.validation.constraints.Positive
 
+@WebAdapter
 @RestController
 @Validated
 class SendMoneyController(
